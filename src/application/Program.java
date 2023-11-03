@@ -5,7 +5,7 @@ import model.entities.Tree;
 
 public class Program {
     public static void main(String[] args) {
-        Tree binarySeachTree = new Tree(new Node(5));
+        Tree binarySeachTree = new Tree();
 
         binarySeachTree.start();
 

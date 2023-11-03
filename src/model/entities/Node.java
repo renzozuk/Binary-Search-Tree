@@ -4,6 +4,7 @@ public class Node {
     private int value;
     private Node left;
     private Node right;
+    private Integer depth;
 
     public Node(int value) {
         this.value = value;
@@ -33,5 +34,13 @@ public class Node {
 
     public void setRight(Node right) {
         this.right = right;
+    }
+
+    public Integer getDepth() {
+        return depth;
+    }
+
+    public void setDepth(Integer depth) {
+        this.depth = depth;
     }
 }
