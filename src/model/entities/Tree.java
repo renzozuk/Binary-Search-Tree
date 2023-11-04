@@ -21,11 +21,11 @@ public class Tree {
     }
 
     public void start(){
-        insert(5);
-        insert(3);
-        insert(8);
-        insert(9);
-        insert(6);
+        insert(root, 5);
+        insert(root, 3);
+        insert(root, 8);
+        insert(root, 9);
+        insert(root, 6);
     }
 
     public void preOrder(Node node){
@@ -87,39 +87,23 @@ public class Tree {
 
     }
 
-    public void insert(int value){
+    public Node insert(Node root, int value){
 
-        Node newNode = new Node(value);
+        if (this.root == null){
+            setRoot(new Node(value));
 
-        if (root == null){
-            root = newNode;
+            return this.root;
+        }
+        else if (root == null){
+            root = new Node(value);
+        }
+        else if (value < root.getValue()){
+            root.setLeft(insert(root.getLeft(), value));
         }
         else {
-
-            Node aux = root;
-
-            while (true){
-                if (newNode.getValue() < aux.getValue()) {
-                    if (aux.getLeft() == null){
-                        aux.setLeft(newNode);
-                        break;
-                    }
-                    else {
-                        aux = aux.getLeft();
-                    }
-                }
-                else {
-                    if (newNode.getValue() > aux.getValue()){
-                        if (aux.getRight() == null){
-                            aux.setRight(newNode);
-                            break;
-                        }
-                        else {
-                            aux = aux.getRight();
-                        }
-                    }
-                }
-            }
+            root.setRight(insert(root.getRight(), value));
         }
+
+        return root;
     }
 }

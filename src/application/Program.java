@@ -1,6 +1,5 @@
 package application;
 
-import model.entities.Node;
 import model.entities.Tree;
 
 public class Program {
@@ -15,10 +14,8 @@ public class Program {
         System.out.print("\n\nSYMMETRIC ORDER: ");
         binarySeachTree.symmetricOrder(binarySeachTree.getRoot());
 
-
         System.out.print("\n\nPOST-ORDER: ");
         binarySeachTree.postOrder(binarySeachTree.getRoot());
-
 
     }
 }
