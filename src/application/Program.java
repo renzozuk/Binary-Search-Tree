@@ -8,7 +8,10 @@ public class Program {
 
         binarySeachTree.start();
 
-        System.out.print("PRE-ORDER: ");
+        System.out.println(binarySeachTree.search(5));
+        System.out.println(binarySeachTree.search(7));
+
+        System.out.print("\nPRE-ORDER: ");
         System.out.print(binarySeachTree.preOrderIterative(binarySeachTree.getRoot()));
 
         System.out.print("\n\nSYMMETRIC ORDER: ");

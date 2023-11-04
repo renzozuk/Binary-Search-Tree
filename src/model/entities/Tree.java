@@ -87,6 +87,22 @@ public class Tree {
 
     }
 
+    public boolean search(int value){
+        return findNode(root, value) != null;
+    }
+
+    public Node findNode(Node node, int value){
+        if(node == null || node.getValue() == value){
+            return node;
+        }
+
+        if(node.getValue() < value){
+            return findNode(node.getRight(), value);
+        }
+
+        return findNode(node.getLeft(), value);
+    }
+
     public Node insert(Node root, int value){
 
         if (this.root == null){
