@@ -26,45 +26,59 @@ public class Tree {
         insert(root, 8);
         insert(root, 9);
         insert(root, 6);
+
+        setAllHeights(root);
     }
 
-    public void preOrder(Node node){
-        System.out.print(node.getValue() + " ");
+    public void printPreOrder(Node root){
+        System.out.print(root.getValue() + " ");
 
-        if(node.getLeft() != null){
-            preOrder(node.getLeft());
+        if(root.getLeft() != null){
+            printPreOrder(root.getLeft());
         }
 
-        if(node.getRight() != null){
-            preOrder(node.getRight());
-        }
-    }
-
-    public void symmetricOrder(Node node){
-        if(node.getLeft() != null){
-            symmetricOrder(node.getLeft());
-        }
-
-        System.out.print(node.getValue() + " ");
-
-        if(node.getRight() != null){
-            symmetricOrder(node.getRight());
+        if(root.getRight() != null){
+            printPreOrder(root.getRight());
         }
     }
 
-    public void postOrder(Node node){
-        if(node.getLeft() != null){
-            postOrder(node.getLeft());
+    public void printInOrder(Node root){
+        if(root.getLeft() != null){
+            printInOrder(root.getLeft());
         }
 
-        if(node.getRight() != null){
-            postOrder(node.getRight());
-        }
+        System.out.print(root.getValue() + " ");
 
-        System.out.print(node.getValue() + " ");
+        if(root.getRight() != null){
+            printInOrder(root.getRight());
+        }
     }
 
-    public String preOrderIterative(Node node){
+    public void printPostOrder(Node root){
+        if(root.getLeft() != null){
+            printPostOrder(root.getLeft());
+        }
+
+        if(root.getRight() != null){
+            printPostOrder(root.getRight());
+        }
+
+        System.out.print(root.getValue() + " ");
+    }
+
+    public void setAllHeights(Node root){
+        if(root.getLeft() != null){
+            setAllHeights(root.getLeft());
+        }
+
+        if(root.getRight() != null){
+            setAllHeights(root.getRight());
+        }
+
+        root.setHeight();
+    }
+
+    public String iterativePreOrder(Node node){
         Stack<Node> stack = new Stack<>();
         stack.push(node);
 
@@ -84,23 +98,72 @@ public class Tree {
         }
 
         return result.toString();
-
     }
 
-    public boolean search(int value){
-        return findNode(root, value) != null;
+    public String iterativeInOrder(Node node){
+        Stack<Node> stack = new Stack<>();
+        Node currentNode = node;
+
+        StringBuilder result = new StringBuilder();
+
+        while(currentNode != null || !stack.isEmpty()){
+            while(currentNode != null){
+                stack.push(currentNode);
+                currentNode = currentNode.getLeft();
+            }
+
+            currentNode = stack.pop();
+
+            result.append(currentNode.getValue()).append(" ");
+
+            currentNode = currentNode.getRight();
+        }
+
+        return result.toString();
     }
 
-    public Node findNode(Node node, int value){
-        if(node == null || node.getValue() == value){
-            return node;
+    public String iterativePostOrder(Node node){
+        Stack<Node> stack = new Stack<>();
+        stack.push(node);
+
+        Stack<Integer> valuesList = new Stack<>();
+
+        while(!stack.empty()){
+            Node currentNode = stack.pop();
+            valuesList.push(currentNode.getValue());
+
+            if(currentNode.getLeft() != null){
+                stack.push(currentNode.getLeft());
+            }
+
+            if(currentNode.getRight() != null){
+                stack.push(currentNode.getRight());
+            }
         }
 
-        if(node.getValue() < value){
-            return findNode(node.getRight(), value);
+        StringBuilder result = new StringBuilder();
+
+        while (!valuesList.empty()){
+            result.append(valuesList.pop()).append(" ");
         }
 
-        return findNode(node.getLeft(), value);
+        return result.toString();
+    }
+
+    public boolean isThereANode(int value){
+        return search(root, value) != null;
+    }
+
+    public Node search(Node root, int value){
+        if(root == null || root.getValue() == value){
+            return root;
+        }
+
+        if(root.getValue() < value){
+            return search(root.getRight(), value);
+        }
+
+        return search(root.getLeft(), value);
     }
 
     public Node insert(Node root, int value){

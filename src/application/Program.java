@@ -8,17 +8,16 @@ public class Program {
 
         binarySeachTree.start();
 
-        System.out.println(binarySeachTree.search(5));
-        System.out.println(binarySeachTree.search(7));
+        System.out.println(binarySeachTree.isThereANode(5));
+        System.out.println(binarySeachTree.isThereANode(7));
 
         System.out.print("\nPRE-ORDER: ");
-        System.out.print(binarySeachTree.preOrderIterative(binarySeachTree.getRoot()));
+        System.out.println(binarySeachTree.iterativePreOrder(binarySeachTree.getRoot()));
 
-        System.out.print("\n\nSYMMETRIC ORDER: ");
-        binarySeachTree.symmetricOrder(binarySeachTree.getRoot());
+        System.out.print("\nSYMMETRIC ORDER: ");
+        System.out.println(binarySeachTree.iterativeInOrder(binarySeachTree.getRoot()));
 
-        System.out.print("\n\nPOST-ORDER: ");
-        binarySeachTree.postOrder(binarySeachTree.getRoot());
-
+        System.out.print("\nPOST-ORDER: ");
+        System.out.println(binarySeachTree.iterativePostOrder(binarySeachTree.getRoot()));
     }
 }
