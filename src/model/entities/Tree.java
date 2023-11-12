@@ -25,9 +25,13 @@ public class Tree {
         insert(root, 3);
         insert(root, 8);
         insert(root, 9);
-        insert(root, 6);
+        insert(root, 1);
+        insert(root, 10);
+        insert(root, 7);
+        insert(root, 25);
 
-        setAllHeights(root);
+        //setAllHeights(root);
+
     }
 
     public void printPreOrder(Node root){
@@ -168,6 +172,9 @@ public class Tree {
 
     public Node insert(Node root, int value){
 
+        int leftHeight = 0;
+        int rightHeight = 0;
+
         if (this.root == null){
             setRoot(new Node(value));
 
@@ -176,11 +183,38 @@ public class Tree {
         else if (root == null){
             root = new Node(value);
         }
+        else if (value == root.getValue()){
+
+            System.out.println("Elemento " + value + " já existe.");
+            return root;
+        }
         else if (value < root.getValue()){
+
             root.setLeft(insert(root.getLeft(), value));
+
+            leftHeight = root.getLeft().getHeight();
+
+            if (root.getRight() != null) {
+                rightHeight = root.getRight().getHeight();
+            }
+
         }
         else {
+
             root.setRight(insert(root.getRight(), value));
+            rightHeight = root.getRight().getHeight();
+
+            if (root.getLeft() != null) {
+                leftHeight = root.getLeft().getHeight();
+            }
+
+        }
+
+        if (leftHeight < rightHeight){
+            root.setHeight(rightHeight + 1);
+        }
+        else {
+            root.setHeight(leftHeight + 1);
         }
 
         return root;

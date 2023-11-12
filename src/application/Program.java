@@ -19,5 +19,9 @@ public class Program {
 
         System.out.print("\nPOST-ORDER: ");
         System.out.println(binarySeachTree.iterativePostOrder(binarySeachTree.getRoot()));
+
+        System.out.println();
+        System.out.println("H");
+        System.out.println(binarySeachTree.getRoot().getHeight());
     }
 }
