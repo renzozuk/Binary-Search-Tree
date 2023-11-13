@@ -4,8 +4,10 @@ import java.util.Stack;
 
 public class Tree {
     private Node root;
+    private Integer size;
 
     public Tree() {
+        this.size = 0;
     }
 
     public Tree(Node root) {
@@ -29,9 +31,14 @@ public class Tree {
         insert(root, 10);
         insert(root, 7);
         insert(root, 25);
+    }
 
-        //setAllHeights(root);
+    public Integer getSize() {
+        return size;
+    }
 
+    public void setSize(Integer size) {
+        this.size = size;
     }
 
     public void printPreOrder(Node root){
@@ -172,51 +179,87 @@ public class Tree {
 
     public Node insert(Node root, int value){
 
-        int leftHeight = 0;
-        int rightHeight = 0;
-
         if (this.root == null){
             setRoot(new Node(value));
 
             return this.root;
         }
-        else if (root == null){
+
+        int leftHeight = 0;
+        int rightHeight = 0;
+
+        if (root == null){
             root = new Node(value);
         }
         else if (value == root.getValue()){
-
             System.out.println("Elemento " + value + " já existe.");
             return root;
         }
         else if (value < root.getValue()){
 
             root.setLeft(insert(root.getLeft(), value));
-
             leftHeight = root.getLeft().getHeight();
 
             if (root.getRight() != null) {
                 rightHeight = root.getRight().getHeight();
             }
-
         }
         else {
-
             root.setRight(insert(root.getRight(), value));
             rightHeight = root.getRight().getHeight();
 
             if (root.getLeft() != null) {
                 leftHeight = root.getLeft().getHeight();
             }
-
         }
 
-        if (leftHeight < rightHeight){
-            root.setHeight(rightHeight + 1);
-        }
-        else {
-            root.setHeight(leftHeight + 1);
-        }
+        root.setHeight(Math.max(rightHeight, leftHeight) + 1);
 
         return root;
     }
+
+    public int getSize(Node root){
+        return countNodes(root);
+    }
+
+    public int countNodes(Node root){
+        if (root == null){
+            return 0;
+        }
+        else {
+             return  1 + (countNodes(root.getLeft()) + countNodes(root.getRight()));
+        }
+
+    }
+
+    public double calculateMean(Node root){
+
+        if (root == null){
+            return 0;
+        }
+
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+
+        int sumValues = 0;
+
+        while(!stack.isEmpty()){
+            Node aux = stack.pop();
+            sumValues += aux.getValue();
+
+            if(aux.getRight() != null){
+                stack.push(aux.getRight());
+            }
+
+            if(aux.getLeft() != null){
+                stack.push(aux.getLeft());
+            }
+        }
+
+        int sizeTree = getSize(root);
+
+        return (double) sumValues / sizeTree;
+
+    }
+
 }
