@@ -1,5 +1,8 @@
 package model.entities;
 
+import model.util.NumberGenerator;
+
+import java.util.Set;
 import java.util.Stack;
 
 public class Tree {
@@ -31,6 +34,14 @@ public class Tree {
         insert(root, 10);
         insert(root, 7);
         insert(root, 25);
+    }
+
+    public void startRandom(){
+        Set<Integer> list = NumberGenerator.numberGenerator();
+
+        for (Integer number : list) {
+            insert(root, number);
+        }
     }
 
     public Integer getSize() {
@@ -77,13 +88,41 @@ public class Tree {
         System.out.print(root.getValue() + " ");
     }
 
-    public void setAllHeights(Node root){
+    public int findDepth(Node root, int value){
+        if(root == null){
+            return -1;
+        }
+
+        int distance = -1;
+
+        if((root.getValue() == value) ||
+            (distance = findDepth(root.getLeft(), value)) >= 0 ||
+            (distance = findDepth(root.getRight(), value)) >= 0){
+            return distance + 1;
+        }
+
+        return distance;
+    }
+
+    public void findAllDepths(Node root){
+        root.setDepth(findDepth(this.root, root.getValue()));
+
         if(root.getLeft() != null){
-            setAllHeights(root.getLeft());
+            findAllDepths(root.getLeft());
         }
 
         if(root.getRight() != null){
-            setAllHeights(root.getRight());
+            findAllDepths(root.getRight());
+        }
+    }
+
+    public void findAllHeights(Node root){
+        if(root.getLeft() != null){
+            findAllHeights(root.getLeft());
+        }
+
+        if(root.getRight() != null){
+            findAllHeights(root.getRight());
         }
 
         root.setHeight();
@@ -218,6 +257,46 @@ public class Tree {
         return root;
     }
 
+    public Node remove(Node root, int value){
+        if(root == null){
+            return root;
+        }
+
+        if(root.getValue() > value){
+            root.setLeft(remove(root.getLeft(), value));
+            return root;
+        }else if(root.getValue() < value){
+            root.setRight(remove(root.getRight(), value));
+            return root;
+        }
+
+        if(root.getLeft() == null){
+            return root.getRight();
+        }else if(root.getRight() == null){
+            return root.getLeft();
+        }else{
+            Node successorParent = root;
+
+            Node successor = root.getRight();
+
+            while(successor.getLeft() != null){
+                successorParent = successor;
+                successor = successor.getLeft();
+            }
+
+            if(successorParent != root){
+                successorParent.setLeft(successor.getRight());
+            }else{
+                successorParent.setRight(successor.getLeft());
+            }
+
+            root.setValue(successor.getValue());
+
+            return root;
+        }
+
+    }
+
     public int getSize(Node root){
         return countNodes(root);
     }
@@ -260,6 +339,26 @@ public class Tree {
 
         return (double) sumValues / sizeTree;
 
+    }
+
+    public void printFirstFormat(){
+
+    }
+
+    public void printSecondFormat(){
+
+    }
+
+    public void printTree(int s){
+        switch(s){
+            case 1:
+                printFirstFormat();
+                break;
+            case 2:
+                printSecondFormat();
+                break;
+            default:
+        }
     }
 
 }
