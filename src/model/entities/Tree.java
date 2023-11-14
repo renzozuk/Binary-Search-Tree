@@ -495,4 +495,30 @@ public class Tree {
         return target;
 
     }
+
+    public int position(int value){
+        Stack<Node> stack = new Stack<>();
+        Node currentNode = root;
+
+        int position = 1;
+
+        while(currentNode != null || !stack.isEmpty()){
+            while(currentNode != null){
+                stack.push(currentNode);
+                currentNode = currentNode.getLeft();
+            }
+
+            currentNode = stack.pop();
+
+            if(currentNode.getValue() == value){
+                return position;
+            }
+
+            position++;
+
+            currentNode = currentNode.getRight();
+        }
+
+        return -1;
+    }
 }
