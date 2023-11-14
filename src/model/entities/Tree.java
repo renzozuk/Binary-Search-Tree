@@ -454,4 +454,45 @@ public class Tree {
         return Math.max(leftDepth, rightDepth);
 
     }
+
+    public int nthElement(Node root, int n){
+
+        if (root == null){
+
+            System.out.println("Tree is empty.");
+
+            return -1;
+        }
+
+        if (n > getSize(root)){
+            throw new IndexOutOfBoundsException();
+        }
+
+        int idx = 1;
+
+        int target = 0;
+        Stack<Node> stack = new Stack<>();
+        Node currentNode = root;
+
+        while(currentNode != null || !stack.isEmpty()){
+            while(currentNode != null){
+                stack.push(currentNode);
+                currentNode = currentNode.getLeft();
+            }
+
+            if (n == idx){
+                target = stack.pop().getValue();
+                break;
+            }
+            else {
+                idx++;
+                currentNode = stack.pop();
+            }
+
+            currentNode = currentNode.getRight();
+        }
+
+        return target;
+
+    }
 }

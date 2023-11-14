@@ -41,6 +41,12 @@ public class Program {
         System.out.println("\nDepper: ");
         System.out.println(binarySeachTree.getDeeper(binarySeachTree.getRoot()));
 
+        System.out.println("\nNth Element:");
+        System.out.println(binarySeachTree.nthElement(binarySeachTree.getRoot(), 16));
+
+        System.out.println("\nMean:");
+        System.out.println(binarySeachTree.calculateMean(binarySeachTree.getRoot()));
+
         System.out.println("\n---RANDOM---");
 
         Tree randomTree = new Tree();
