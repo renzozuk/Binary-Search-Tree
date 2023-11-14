@@ -7,10 +7,8 @@ import java.util.Stack;
 
 public class Tree {
     private Node root;
-    private Integer size;
 
     public Tree() {
-        this.size = 0;
     }
 
     public Tree(Node root) {
@@ -26,14 +24,21 @@ public class Tree {
     }
 
     public void start(){
-        insert(root, 5);
-        insert(root, 3);
-        insert(root, 8);
-        insert(root, 9);
-        insert(root, 1);
-        insert(root, 10);
-        insert(root, 7);
-        insert(root, 25);
+        insert(root, 20);
+        insert(root, 30);
+        insert(root, 28);
+        insert(root, 29);
+        insert(root, 40);
+        insert(root, 41);
+        insert(root, 15);
+        insert(root, 18);
+        insert(root, 13);
+        insert(root, 12);
+        insert(root, 14);
+        insert(root, 27);
+        insert(root, 39);
+        insert(root, 19);
+        insert(root, 17);
     }
 
     public void startRandom(){
@@ -42,14 +47,6 @@ public class Tree {
         for (Integer number : list) {
             insert(root, number);
         }
-    }
-
-    public Integer getSize() {
-        return size;
-    }
-
-    public void setSize(Integer size) {
-        this.size = size;
     }
 
     public void printPreOrder(Node root){
@@ -221,6 +218,7 @@ public class Tree {
         if (this.root == null){
             setRoot(new Node(value));
 
+            this.root.setHeight(1);
             return this.root;
         }
 
@@ -361,4 +359,60 @@ public class Tree {
         }
     }
 
+    public boolean isComplete(Node root){
+
+        if (root == null){
+            return false;
+        }
+
+        int size = getSize(root);
+        int height = root.getHeight();
+
+        return Math.pow(2, height - 1) <= size && size <= Math.pow(2, height) - 1;
+    }
+
+    public boolean isPerfect(Node root, int deeper){
+
+        if (root == null){
+            return true;
+        }
+
+        boolean left;
+        boolean right;
+        if (root.getLeft() != null && root.getRight() != null){
+            left = isPerfect(root.getLeft(), deeper);
+            right = isPerfect(root.getRight(), deeper);
+        }
+        else {
+            return deeper == root.getDepth();
+        }
+
+        return left && right;
+
+    }
+
+    public int getDeeper(Node root){
+
+        if (root == null){
+            return 0;
+        }
+
+        int leftDepth = 0;
+        int rightDepth = 0;
+
+        if (root.getLeft() != null){
+            leftDepth = getDeeper(root.getLeft());
+        }
+
+        if (root.getRight() != null){
+            rightDepth = getDeeper(root.getRight());
+        }
+
+        if (root.getRight() == null && root.getLeft() == null){
+            return root.getDepth();
+        }
+
+        return Math.max(leftDepth, rightDepth);
+
+    }
 }
