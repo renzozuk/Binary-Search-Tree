@@ -10,8 +10,6 @@ public class Program {
 
         System.out.println(binarySeachTree.isThereANode(5));
         System.out.println(binarySeachTree.isThereANode(24));
-
-        binarySeachTree.findAllDepths(binarySeachTree.getRoot());
         System.out.println(binarySeachTree.findDepth(binarySeachTree.getRoot(), 9));
 
         System.out.print("\nPRE-ORDER: ");
@@ -55,7 +53,6 @@ public class Program {
         Tree randomTree = new Tree();
 
         randomTree.startRandom();
-        randomTree.findAllDepths(randomTree.getRoot());
 
         System.out.print("\nPRE-ORDER: ");
         System.out.println(randomTree.iterativePreOrder(randomTree.getRoot()));
@@ -65,6 +62,8 @@ public class Program {
 
         System.out.print("\nPOST-ORDER: ");
         System.out.println(randomTree.iterativePostOrder(randomTree.getRoot()));
+
+        System.out.println("\n---GIVEN---");
 
         Tree givenTree = new Tree();
 

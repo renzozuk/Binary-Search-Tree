@@ -1,5 +1,6 @@
 package model.entities;
 
+import com.sun.security.jgss.GSSUtil;
 import model.util.FileManager;
 import model.util.NumberGenerator;
 
@@ -41,6 +42,8 @@ public class Tree {
         insert(root, 39);
         insert(root, 19);
         insert(root, 17);
+
+        findAllDepths(root);
     }
 
     public void startRandom(){
@@ -49,6 +52,8 @@ public class Tree {
         for (Integer number : list) {
             insert(root, number);
         }
+
+        findAllDepths(root);
     }
 
     public void startGivenTree(){
@@ -59,6 +64,8 @@ public class Tree {
                 insert(root, number);
             }
         }
+
+        findAllDepths(root);
 
         List<String> givenCommands = FileManager.readSecondFile();
 
@@ -73,8 +80,11 @@ public class Tree {
                     case "POSITION", "POSICAO":
                         System.out.println("POSIÇÃO: " + position(Integer.parseInt(parameters[1])));
                         break;
-                    case "MEDIAN", "MEDIANA":
-                        System.out.println("MEDIANA: " + median(root));
+                    case "MEDIAN", "MEDIA":
+                        System.out.println("MÉDIA: " + median(root));
+                        break;
+                    case "MEAN", "MEDIANA":
+                        System.out.println("MEDIANA: " + calculateMean(root));
                         break;
                     case "PERFECT", "CHEIA":
                         System.out.println("CHEIA: " + isPerfect(root, getDeeper(root)));
@@ -85,8 +95,26 @@ public class Tree {
                     case "PRINT", "IMPRIMA":
                         printTree(Integer.parseInt(parameters[1]));
                         break;
+                    case "SEARCH", "BUSCAR":
+                        System.out.println(search(root, Integer.parseInt(parameters[1])).getValue());
+                        break;
+                    case "INSERT", "INSIRA":
+                        insert(root, Integer.parseInt(parameters[1]));
+                        break;
                     case "REMOVE", "REMOVA":
                         remove(root, Integer.parseInt(parameters[1]));
+                        break;
+                    case "PREORDER",  "PREORDEM":
+                        printPreOrder(root);
+                        System.out.println();
+                        break;
+                    case "INORDER", "SIMETRICA":
+                        printInOrder(root);
+                        System.out.println();
+                        break;
+                    case "POSTORDER", "POSORDEM":
+                        printPostOrder(root);
+                        System.out.println();
                         break;
                     default:
                         throw new IllegalArgumentException("An invalid command was received. The only valid commands are ENESIMO, POSICAO, MEDIANA, CHEIA, COMPLETA, IMPRIMA or REMOVA.");
@@ -477,6 +505,7 @@ public class Tree {
     }
 
     public int getDeeper(Node root){
+        findAllDepths(this.root);
 
         if (root == null){
             return 0;
