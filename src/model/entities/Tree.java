@@ -74,6 +74,7 @@ public class Tree {
                         System.out.println("POSIÇÃO: " + position(Integer.parseInt(parameters[1])));
                         break;
                     case "MEDIAN", "MEDIANA":
+                        System.out.println("MEDIANA: " + median(root));
                         break;
                     case "PERFECT", "CHEIA":
                         System.out.println("CHEIA: " + isPerfect(root, getDeeper(root)));
@@ -566,4 +567,27 @@ public class Tree {
 
         return -1;
     }
+
+    public int median(Node root){
+        if (root == null){
+
+            System.out.println("Tree is empty.");
+            return -1;
+        }
+
+        int size = getSize(root);
+
+        int value1;
+        int value2;
+        if (size % 2 != 0){
+            return nthElement(root, (size / 2) + 1);
+        }
+        else {
+            value1 = nthElement(root, size / 2);
+            value2 = nthElement(root, (size / 2) + 1);
+        }
+
+        return Math.min(value1, value2);
+    }
+
 }

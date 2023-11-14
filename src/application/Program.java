@@ -47,6 +47,9 @@ public class Program {
         System.out.println("\nMean:");
         System.out.println(binarySeachTree.calculateMean(binarySeachTree.getRoot()));
 
+        System.out.println("\nMedian:");
+        System.out.println(binarySeachTree.median(binarySeachTree.getRoot()));
+
         System.out.println("\n---RANDOM---");
 
         Tree randomTree = new Tree();
