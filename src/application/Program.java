@@ -42,7 +42,7 @@ public class Program {
         System.out.println(binarySeachTree.getDeeper(binarySeachTree.getRoot()));
 
         System.out.println("\nNth Element:");
-        System.out.println(binarySeachTree.nthElement(binarySeachTree.getRoot(), 16));
+        System.out.println(binarySeachTree.nthElement(binarySeachTree.getRoot(), 15));
 
         System.out.println("\nMean:");
         System.out.println(binarySeachTree.calculateMean(binarySeachTree.getRoot()));
@@ -62,5 +62,18 @@ public class Program {
 
         System.out.print("\nPOST-ORDER: ");
         System.out.println(randomTree.iterativePostOrder(randomTree.getRoot()));
+
+        Tree givenTree = new Tree();
+
+        givenTree.startGivenTree();
+
+        System.out.print("\nPRE-ORDER: ");
+        System.out.println(givenTree.iterativePreOrder(givenTree.getRoot()));
+
+        System.out.print("\nSYMMETRIC ORDER: ");
+        System.out.println(givenTree.iterativeInOrder(givenTree.getRoot()));
+
+        System.out.print("\nPOST-ORDER: ");
+        System.out.println(givenTree.iterativePostOrder(givenTree.getRoot()));
     }
 }

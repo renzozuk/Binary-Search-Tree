@@ -1,7 +1,9 @@
 package model.entities;
 
+import model.util.FileManager;
 import model.util.NumberGenerator;
 
+import java.util.List;
 import java.util.Set;
 import java.util.Stack;
 
@@ -46,6 +48,49 @@ public class Tree {
 
         for (Integer number : list) {
             insert(root, number);
+        }
+    }
+
+    public void startGivenTree(){
+        List<Integer> givenNumbers = FileManager.readFirstFile();
+
+        if (givenNumbers != null) {
+            for (Integer number : givenNumbers) {
+                insert(root, number);
+            }
+        }
+
+        List<String> givenCommands = FileManager.readSecondFile();
+
+        if (givenCommands != null) {
+            for (String command : givenCommands) {
+                String[] parameters = command.split(" ");
+
+                switch(parameters[0].toUpperCase()){
+                    case "ENESIMAL", "ENESIMO":
+                        System.out.println("ENÉSIMO: " + nthElement(root, Integer.parseInt(parameters[1])));
+                        break;
+                    case "POSITION", "POSICAO":
+                        System.out.println("POSIÇÃO: " + position(Integer.parseInt(parameters[1])));
+                        break;
+                    case "MEDIAN", "MEDIANA":
+                        break;
+                    case "PERFECT", "CHEIA":
+                        System.out.println("CHEIA: " + isPerfect(root, getDeeper(root)));
+                        break;
+                    case "COMPLETE", "COMPLETA":
+                        System.out.println("COMPLETA: " + isComplete(root));
+                        break;
+                    case "PRINT", "IMPRIMA":
+                        printTree(Integer.parseInt(parameters[1]));
+                        break;
+                    case "REMOVE", "REMOVA":
+                        remove(root, Integer.parseInt(parameters[1]));
+                        break;
+                    default:
+                        throw new IllegalArgumentException("An invalid command was received. The only valid commands are ENESIMO, POSICAO, MEDIANA, CHEIA, COMPLETA, IMPRIMA or REMOVA.");
+                }
+            }
         }
     }
 
