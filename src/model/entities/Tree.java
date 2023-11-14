@@ -339,23 +339,62 @@ public class Tree {
 
     }
 
-    public void printFirstFormat(){
-
+    public void printNodeFirstFormat(Node node){
+        for (int i = 0; i < node.getDepth(); i++) {
+            System.out.print("          ");
+        }
+        System.out.print(node.getValue());
+        for (int i = 0; i < root.getHeight() - node.getDepth(); i++) {
+            System.out.print("----------");
+        }
     }
 
-    public void printSecondFormat(){
+    public void printGivenLevel(Node node, int level){
+        if(node == null){
+            return;
+        }
+        if(level == 1){
+            printNodeFirstFormat(node);
+            System.out.println();
+        }else if(level > 1){
+            printGivenLevel(node.getLeft(), level - 1);
+            printGivenLevel(node.getRight(), level - 1);
+        }
+    }
 
+    public void printTreeFirstFormat(){
+        for (int i = 1; i < root.getHeight() + 1; i++) {
+            printGivenLevel(this.root, i);
+        }
+    }
+
+    public void printTreeSecondFormat(Node root){
+        System.out.print("(" + root.getValue());
+
+        if(root.getLeft() != null){
+            System.out.print(" ");
+            printTreeSecondFormat(root.getLeft());
+        }
+
+        if(root.getRight() != null){
+            System.out.print(" ");
+            printTreeSecondFormat(root.getRight());
+        }
+
+        System.out.print(")");
     }
 
     public void printTree(int s){
         switch(s){
             case 1:
-                printFirstFormat();
+                printTreeFirstFormat();
                 break;
             case 2:
-                printSecondFormat();
+                printTreeSecondFormat(root);
+                System.out.println();
                 break;
             default:
+                throw new IllegalArgumentException("1 and 2 are the only valid arguments for the printTree method.");
         }
     }
 

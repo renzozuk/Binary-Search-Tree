@@ -46,6 +46,7 @@ public class Program {
         Tree randomTree = new Tree();
 
         randomTree.startRandom();
+        randomTree.findAllDepths(randomTree.getRoot());
 
         System.out.print("\nPRE-ORDER: ");
         System.out.println(randomTree.iterativePreOrder(randomTree.getRoot()));
