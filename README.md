@@ -1,22 +1,24 @@
-# Implementação de uma Árvore Binária de Busca (ABB)
+# Binary Search Tree implementation
 
-## Introdução
+This project is an implementation of a binary search tree. It'll be shown how to compile and run the program, in addition to presenting the methods present in the implementation.
 
-Este projeto projeto se trata de uma implementação de uma árvore binária de busca. Aqui, será apresentado como compilar e executar o programa, além de apresentar os métodos presentes na implementação.
+- [Software instalation guide](#software-instalation-guide)
+- [Compiling and executing the program](#compiling-and-executing-the-program)
+- [Commands model](#commands-model)
 
-## Guia para a instalação de software
+## Software instalation guide
 
-Neste projeto, utiliza-se a versão 17 do JDK. Portanto, caso você não o tenha instalado, aqui vai algumas instruções de como instalar esta versão do `Java`:
+In this project, it's used the version LTS 17 of JDK. However, if you haven't installed yet, here are some instructions for the instalation:
 
-Basta acessar acessar o seu terminal `Linux` e colocar o seguinte comando:
+On `Linux` terminal, you'll use the following command:
 
 `sudo apt install openjdk-17-jdk`
 
-Para verficar se a instalação ocorreu bem, bastas colocar o seguinte comando no terminal:
+If you want to verify if everything is ok, you can use this command:
 
 `java --version`
 
-A resposta esperada deve ser parecida com essa:
+If everything went well, something like this is expected:
 
 `openjdk 17.0.8.1 2023-08-24`
 
@@ -24,44 +26,42 @@ A resposta esperada deve ser parecida com essa:
 
 `OpenJDK 64-Bit Server VM (build 17.0.8.1+1-Ubuntu-0ubuntu122.04, mixed mode, sharing)`
 
-Além disso, o projeto contém dois arquivos por padrão. Um com uma lista de comandos `commands.txt` e outro com uma entrada para montar uma árvore binária de busca `tree.txt`.
+Furthermore, the projects have two `.txt` files by default. The first one have a commands list `commands.txt`, the other one have an integers list to build the binary search tree `tree.txt`.
 
-Caso você queira uma lista de comandos personalizada e uma árvore personalizada, você pode por substiruir os arquivos que vêm por padrão pelos seus arquivos. Vale ressaltar que, você deve por nome do arquivo com a lista de comandos de `commands.txt` e o arquivo com a entrada para a árvore de `tree.txt`.
+If you want a personalized commands list and a personalized tree, you can change the mentioned files content. Keep in mind that you have to keep the file names.
 
-Se tudo ocorreu bem, esta etapa está finalizada.
+If everything runned well, this step is finished.
 
-## Executando e compilando o programa:
+## Compiling and executing the program
 
-Para compilar o programa, basta inserir no terminal:
+To compile the program, use the following command on terminal:
 
 `javac application/Program.java`
 
-Para executá-lo, primeiro você deve transferir os arquivos `tree.txt` e `commands.txt` para a pasta src. Logo após, basta inserir no terminal:
+To run the program, you have to transfer the files `tree.txt` and `commands.txt` to the src folder, if this folder don't have these files yet, and use the following command:
 
 `java application/Program`
 
+An alternative way to compile and the program:
 
-Outra alternativa:
+Cloning this repository and accomplishing the steps above, you can choose the `IDE` of your preference and import the project on it.
 
-Ao clonar este repositório e realizar os passos acima. Basta escolher sua `IDE` de preferência e importar o projeto nela.
+In this way, you can compile and execute the program.
 
-Desta forma, basta executar o programa e ele vai ler os arquivos.
+## Commands Model
 
-## Modelo dos comandos:
+Here are an example that show how you can list the commands, you want to create a personalized `commands.txt`.
 
-Aqui vai um exemplo de como listar os comandos caso você crie um `commands.txt` personalizado.
+Example:
 
-Exemplo:
+NTH N <br>
+POSITION N <br>
+MEAN <br>
+PERFECT <br>
+COMPLETE <br>
+PRINT S <br>
+REMOVE N <br>
 
-ENESIMO N <br>
-POSICAO N <br>
-MEDIANA <br>
-CHEIA <br>
-COMPLETA <br>
-IMPRIMA S <br>
-REMOVA N <br>
+---
 
-
-## Desenvolvido por:
-
-Renzo Paulo e Yuri Filgueira.
+Developed by Renzo Zukeram and Yuri Filgueira

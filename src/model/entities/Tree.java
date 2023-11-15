@@ -74,7 +74,7 @@ public class Tree {
                 String[] parameters = command.split(" ");
 
                 switch(parameters[0].toUpperCase()){
-                    case "ENESIMAL", "ENESIMO":
+                    case "NTH", "ENESIMO":
                         System.out.println("ENÉSIMO: " + nthElement(root, Integer.parseInt(parameters[1])));
                         break;
                     case "POSITION", "POSICAO":
